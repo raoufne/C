@@ -17,10 +17,10 @@ void main() {
     printf("Donner la taille de la matrice (<= %d): ", MAX);
     scanf("%d", &n);
 
-    printf("\n--- Matrice A ---\n");
+    printf("Matrice A\n");
     saisir(A, n);
 
-    printf("\n--- Matrice B ---\n");
+    printf("Matrice B\n");
     saisir(B, n);
 
     do {
@@ -28,12 +28,12 @@ void main() {
         switch (choix) {
             case 1:
                 additionner(A, B, R, n);
-                printf("\nRésultat de A + B :\n");
+                printf("Résultat de A + B :\n");
                 afficher(R, n);
                 break;
             case 2:
                 multiplier(A, B, R, n);
-                printf("\nRésultat de A * B :\n");
+                printf("Résultat de A * B :\n");
                 afficher(R, n);
                 break;
             case 3:
@@ -90,7 +90,7 @@ void multiplier(int a[MAX][MAX], int b[MAX][MAX], int res[MAX][MAX], int n) {
 
 int menu() {
     int choix;
-    printf("\n=== MENU ===\n");
+    printf("MENU \n");
     printf("1. Additionner deux matrices\n");
     printf("2. Multiplier deux matrices\n");
     printf("3. Quitter\n");

@@ -1,0 +1,27 @@
+# Fichiers et dossiers spécifiques à VSCode
+.vscode/
+
+# Binaires générés
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+
+# Dossiers de build
+build/
+Debug/
+Release/
+
+# Fichiers temporaires
+*.log
+*.tmp
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
