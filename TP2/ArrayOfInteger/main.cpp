@@ -6,7 +6,7 @@ int main() {
     ArrayOfInteger arr1;
     arr1.ajouter(5);
     arr1.ajouter(10);
-    arr1.ajouter(5); // doublon ignoré
+    arr1.ajouter(5); 
     cout << "arr1 = "; arr1.afficher();
 
     int vals[] = {1, 2, 3, 4, 5};
