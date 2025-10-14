@@ -32,6 +32,7 @@ public:
     void setParticipant(int i, string s);
 
     bool estCompatibleAvec(const RDV& r);
+    bool estEgal(const RDV& r) const;
 };
 
 #endif

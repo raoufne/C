@@ -21,6 +21,8 @@ public:
 
     void saisir();
     void affiche() const;
+
+    bool estEgal(const Heure& h) const;
 };
 
 #endif

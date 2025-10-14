@@ -63,3 +63,7 @@ bool Date::estBissextile(int a) {
 int Date::getCompteur() {
     return compteur;
 }
+
+bool Date::estEgal(const Date& d) const {
+    return j==d.j && m==d.m && a==d.a;
+}

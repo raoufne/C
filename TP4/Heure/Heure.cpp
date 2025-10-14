@@ -32,3 +32,5 @@ void Heure::affiche() const {
     cout << (h < 10 ? "0" : "") << h << ":" 
          << (min < 10 ? "0" : "") << min;
 }
+
+bool Heure::estEgal(const Heure& hh) const { return h==hh.h && min==hh.min; }

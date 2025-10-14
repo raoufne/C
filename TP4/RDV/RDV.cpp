@@ -57,3 +57,7 @@ bool RDV::estCompatibleAvec(const RDV& r) {
              heure.getH() == r.heure.getH() &&
              heure.getMin() == r.heure.getMin());
 }
+
+bool RDV::estEgal(const RDV& r) const {
+    return date.estEgal(r.date) && heure.estEgal(r.heure);
+}

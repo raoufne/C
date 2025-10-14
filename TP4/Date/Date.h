@@ -34,6 +34,8 @@ public:
     void affiche() const;
 
     static int getCompteur();
+
+    bool estEgal(const Date& d) const;
 };
 
 #endif
