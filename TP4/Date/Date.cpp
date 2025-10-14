@@ -67,3 +67,11 @@ int Date::getCompteur() {
 bool Date::estEgal(const Date& d) const {
     return j==d.j && m==d.m && a==d.a;
 }
+
+bool Date::estSuperieur(const Date& d) const {
+    if(a>d.a) return true;
+    if(a<d.a) return false;
+    if(m>d.m) return true;
+    if(m<d.m) return false;
+    return j>d.j;
+}

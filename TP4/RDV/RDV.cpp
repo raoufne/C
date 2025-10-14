@@ -66,3 +66,4 @@ bool RDV::estSuperieur(const RDV& r) const {
     if(date.estSuperieur(r.date)) return true;
     if(date.estEgal(r.date) && heure.estSuperieur(r.heure)) return true;
     return false;
+}
