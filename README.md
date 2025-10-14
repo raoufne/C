@@ -1,10 +1,10 @@
 Programmation Orientée Objet en C et C++
-📌 Description globale
+# Description globale
 
 Ce module a pour objectif d’introduire la programmation orientée objet (POO) en partant des bases du langage C, puis en évoluant progressivement vers C++, langage orienté objet par excellence.
 Il permet de comprendre comment la programmation structurée mène naturellement à la programmation orientée objet.
 
-📘 Description du module
+# Description du module
 
 Révision des concepts fondamentaux du C (pointeurs, structures, fonctions, gestion mémoire)
 
@@ -14,28 +14,30 @@ Concepts clés en C++ : classes, objets, encapsulation, héritage, polymorphisme
 
 Mise en pratique via des exercices et projets
 
-🧾 Version
-
-v1.0.0
-
-▶️ Exécution
+# Exécution
 
 Compiler un fichier C++ :
 
+```bash
 g++ main.cpp -o programme
+```
 
+ Exécuter :
 
-Exécuter :
-
+```bash
 ./programme
-
+```
 
 Assure-toi d’avoir un compilateur C/C++ installé (comme gcc/g++ ou clang).
 
-📄 Licence
+# Version
+
+v1.0.0 
+
+# Licence
 
 MIT License
 
-👤 Auteur
+# Auteur
 
 Raouf Nechmi
