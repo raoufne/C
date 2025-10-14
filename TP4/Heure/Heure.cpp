@@ -34,3 +34,9 @@ void Heure::affiche() const {
 }
 
 bool Heure::estEgal(const Heure& hh) const { return h==hh.h && min==hh.min; }
+
+bool Heure::estSuperieur(const Heure& hh) const {
+    if(h>hh.h) return true;
+    if(h<hh.h) return false;
+    return min>hh.min;
+}

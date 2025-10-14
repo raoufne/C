@@ -61,3 +61,8 @@ bool RDV::estCompatibleAvec(const RDV& r) {
 bool RDV::estEgal(const RDV& r) const {
     return date.estEgal(r.date) && heure.estEgal(r.heure);
 }
+
+bool RDV::estSuperieur(const RDV& r) const {
+    if(date.estSuperieur(r.date)) return true;
+    if(date.estEgal(r.date) && heure.estSuperieur(r.heure)) return true;
+    return false;

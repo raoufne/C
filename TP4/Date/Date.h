@@ -36,6 +36,7 @@ public:
     static int getCompteur();
 
     bool estEgal(const Date& d) const;
+    bool estSuperieur(const Date& d) const;
 };
 
 #endif
