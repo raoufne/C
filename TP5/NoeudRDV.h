@@ -9,12 +9,12 @@ private:
     NoeudRDV* suivant;
 
 public:
-    NoeudRDV(const RDV& r) : rdv(r), suivant(nullptr) {}
-    NoeudRDV(const RDV& r, NoeudRDV* s) : rdv(r), suivant(s) {}
+    NoeudRDV(const RDV& r);
+    NoeudRDV(const RDV& r, NoeudRDV* s);
 
-    RDV& getRDV() { return rdv; }
-    NoeudRDV* getSuivant() const { return suivant; }
-    void setSuivant(NoeudRDV* s) { suivant = s; }
+    RDV& getRDV();
+    NoeudRDV* getSuivant() const;
+    void setSuivant(NoeudRDV* s);
 };
 
 #endif
