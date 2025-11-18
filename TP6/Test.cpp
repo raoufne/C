@@ -6,6 +6,7 @@
 #include "EnseignantPermanent/EnseignantPermanent.h"
 #include "EnseignantVacataire/EnseignantVacataire.h"
 #include "ListePersonnel/ListePersonnel.h"
+#include "ListePersonnelDyn/ListePersonnelDyn.h"
 
 
 using namespace std;
@@ -45,6 +46,13 @@ int main() {
 
     lp.afficherSalaires();
 
-
+    cout << "\n=== TEST LISTE PERSONNEL (dynamique) ===" << endl;
+    ListePersonnelDyn lpd;
+    lpd.ajoutPersonnel(&pa);
+    lpd.ajoutPersonnel(&ep);
+    lpd.ajoutPersonnel(&ev);
+    
+    lpd.afficherSalaires();
+    
     return 0;
 }
