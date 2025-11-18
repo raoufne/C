@@ -2,6 +2,7 @@
 #include "Personne/Personne.h"
 #include "Eleve/Eleve.h"
 #include "Personnel/Personnel.h"
+#include "PersonnelAdmin/PersonnelAdmin.h"
 
 
 using namespace std;
@@ -20,5 +21,9 @@ int main() {
     Personnel pers("Mark", "Tom", 2500);
     pers.affiche();
 
+    cout << "\n=== TEST PERSONNEL ADMIN ===" << endl;
+    PersonnelAdmin pa("Admin", "Paul", 2000, 10, 15);
+    pa.affiche();
+        
     return 0;
 }
