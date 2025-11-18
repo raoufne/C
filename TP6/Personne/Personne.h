@@ -27,7 +27,6 @@ public:
 
     virtual void affiche() const;
     virtual ~Personne() {}
-    virtual float calculSalaire() const = 0;
 };
 
 #endif

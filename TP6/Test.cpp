@@ -21,9 +21,9 @@ int main() {
     Eleve e("Smith", "Alice", "L3 Info", 3.5, "TD2");
     e.affiche();
 
-    cout << "\n=== TEST PERSONNEL ===" << endl;
-    Personnel pers("Mark", "Tom", 2500);
-    pers.affiche();
+    // cout << "\n=== TEST PERSONNEL ===" << endl;
+    // Personnel pers("Mark", "Tom", 2500);
+    // pers.affiche();
 
     cout << "\n=== TEST PERSONNEL ADMIN ===" << endl;
     PersonnelAdmin pa("Admin", "Paul", 2000, 10, 15);
@@ -46,13 +46,16 @@ int main() {
 
     lp.afficherSalaires();
 
-    cout << "\n=== TEST LISTE PERSONNEL (dynamique) ===" << endl;
-    ListePersonnelDyn lpd;
-    lpd.ajoutPersonnel(&pa);
-    lpd.ajoutPersonnel(&ep);
-    lpd.ajoutPersonnel(&ev);
-    
-    lpd.afficherSalaires();
-    
+    cout << "\n=== TEST LISTE DYNAMIQUE ===" << endl;
+
+    ListePersonnelDyn lpdyn;
+
+    lpdyn.ajoutPersonnel(&pa);
+    lpdyn.ajoutPersonnel(&ep);
+    lpdyn.ajoutPersonnel(&ev);
+
+    lpdyn.afficherSalaires();
+
+
     return 0;
 }

@@ -13,7 +13,7 @@ public:
     void setSalaire(float s);
     float getSalaire() const;
 
-    virtual float calculSalaire() const;
+    virtual float calculSalaire() const = 0;
     void affiche() const override;
 };
 
