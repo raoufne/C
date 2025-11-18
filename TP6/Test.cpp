@@ -4,6 +4,7 @@
 #include "Personnel/Personnel.h"
 #include "PersonnelAdmin/PersonnelAdmin.h"
 #include "EnseignantPermanent/EnseignantPermanent.h"
+#include "EnseignantVacataire/EnseignantVacataire.h"
 
 
 using namespace std;
@@ -29,6 +30,10 @@ int main() {
     cout << "\n=== TEST ENSEIGNANT PERMANENT ===" << endl;
     EnseignantPermanent ep("Prof", "Marie", 3000, "B-123", 5, 200);
     ep.affiche();
+
+    cout << "\n=== TEST ENSEIGNANT VACATAIRE ===" << endl;
+    EnseignantVacataire ev("Vac", "Leo", 0, "C-45", 20, 40);
+    ev.affiche();
     
     return 0;
 }
