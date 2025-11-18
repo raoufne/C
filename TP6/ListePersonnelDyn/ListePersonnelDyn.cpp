@@ -17,7 +17,7 @@ void ListePersonnelDyn::doubleTableau() {
     delete[] tab;
     tab = nouveau;
 
-    cout << "[INFO] Tableau doublé : nouvelle taille = " << taille << endl;
+    cout << "[INFO] Tableau double : nouvelle taille = " << taille << endl;
 }
 
 void ListePersonnelDyn::ajoutPersonnel(Personnel* p) {
