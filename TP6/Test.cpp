@@ -1,3 +1,7 @@
+// use this to compile : 
+// cd tp6
+// g++ Test.cpp Personne/*.cpp Eleve/*.cpp Personnel/*.cpp PersonnelAdmin/*.cpp EnseignantPermanent/*.cpp EnseignantVacataire/*.cpp ListePersonnel/*.cpp ListePersonnelDyn/*.cpp -o tp6
+
 #include <iostream>
 #include "Personne/Personne.h"
 #include "Eleve/Eleve.h"

@@ -1,0 +1,33 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Approche 1 — Avec pointeurs (Personnel*)
+Fonctionne avec héritage
+Fonctionne avec polymorphisme
+On peut stocker : PersonnelAdmin /EnseignantPermanent /EnseignantVacataire
+
+Et les méthodes virtuelles sont bien appelées.
+Exemple :
+
+Personnel* p = new EnseignantVacataire(...);
+liste.ajoutPersonnel(p);
+p->calculSalaire();   // APPEL DE EnseignantVacataire::calculSalaire()
+
+
+--> Approche pour un vrai programme orienté objet.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+**Approche 2 — Sans pointeurs (objets directs)
+
+Ne supporte pas le polymorphisme
+Provoque un "object slicing" (troncature d’objet)
+Impossible de stocker une sous-classe dans un tableau de classe mère
+
+Exemple :
+
+EnseignantVacataire ev(...);
+tab[0] = ev;  
+
+L’objet est tronqué, seule la partie Personnel est copiée
+La méthode calculSalaire() appelée sera celle de Personnel, PAS de la sous-classe
+Les attributs spécifiques (heures, taux, prime…) sont perdus
+
+--> Cette approche est à éviter dès qu'on' a de l'héritage.
