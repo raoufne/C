@@ -3,6 +3,7 @@
 
 #include "../Personnel/Personnel.h"
 
+// changer la classe personnel en non statique -- ( remove = 0 dans Personnel.h ) pour que ça marche
 class ListePersonnelSP {
 private:
     Personnel tab[100];
