@@ -24,5 +24,8 @@ int main() {
 
     cout << "Nombre d'instances de Vector : " << Vector::getCompteur() << endl;    
 
+    delete &v2;
+    cout << "Nombre d'instances de Vector : " << Vector::getCompteur() << endl;
+    
     return 0;
 }
