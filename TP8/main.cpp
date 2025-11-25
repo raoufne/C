@@ -22,5 +22,7 @@ int main() {
 
     cout << "v1 == v2 ? " << (v1 == v2) << endl;
 
+    cout << "Nombre d'instances de Vector : " << Vector::getCompteur() << endl;    
+
     return 0;
 }
