@@ -39,11 +39,11 @@ public:
     void afficher() const override;
     string getType() const override;
 
-    // ========================================================================
-    // GETTER / SETTER spécifique
-    // ========================================================================
+    // // ========================================================================
+    // // GETTER / SETTER spécifique
+    // // ========================================================================
     string getDessinateur() const;
-    void setDessinateur(string nouveauDessinateur);
+    // void setDessinateur(string nouveauDessinateur);
 };
 
 #endif // BANDEDESSINEE_H

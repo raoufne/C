@@ -62,7 +62,7 @@ public:
     // emprunterLivre() - Emprunte un livre
     // ========================================================================
     // Peut lancer : LimiteEmpruntException, LivreNonDisponibleException
-    void emprunterLivre(Livre* livre);
+    void emprunterLivre(const string& codeLivre);
 
     // ========================================================================
     // rendreLivre() - Rend un livre emprunté
@@ -83,19 +83,19 @@ public:
     string getPrenom() const;
     string getAdresse() const;
     string getNumeroAdherent() const;
-    Bibliotheque* getBibliotheque() const;
+    // Bibliotheque* getBibliotheque() const;
     int getNombreEmprunts() const;
     int getNombreMaxEmprunts() const;
-    ListeChainee<Livre*>& getLivresEmpruntes();
+    // ListeChainee<Livre*>& getLivresEmpruntes();
 
     // ========================================================================
     // SETTERS
     // ========================================================================
-    void setNom(string nouveauNom);
-    void setPrenom(string nouveauPrenom);
-    void setAdresse(string nouvelleAdresse);
+    // void setNom(string nouveauNom);
+    // void setPrenom(string nouveauPrenom);
+    // void setAdresse(string nouvelleAdresse);
     void setBibliotheque(Bibliotheque* nouvelleBiblio);
-    void setNombreMaxEmprunts(int nouveauMax);
+    // void setNombreMaxEmprunts(int nouveauMax);
 
     // ========================================================================
     // METHODE STATIQUE

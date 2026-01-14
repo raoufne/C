@@ -48,11 +48,11 @@ public:
     void afficher() const override;
     string getType() const override;
 
-    // ========================================================================
-    // GETTER / SETTER spécifique
-    // ========================================================================
+    // // ========================================================================
+    // // GETTER / SETTER spécifique
+    // // ========================================================================
     TypeIllustration getTypeIllustration() const;
-    void setTypeIllustration(TypeIllustration nouveauType);
+    // void setTypeIllustration(TypeIllustration nouveauType);
     
     // Méthode utilitaire
     string typeIllustrationToString() const;

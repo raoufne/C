@@ -5,10 +5,6 @@
 #include "Bibliotheque.h"
 #include "Adherent.h"
 
-// ============================================================================
-// INITIALISATION DU MEMBRE STATIQUE
-// ============================================================================
-int Bibliotheque::nombreTotalBibliotheques = 0;
 
 // ============================================================================
 // CONSTRUCTEUR PAR DEFAUT
@@ -17,7 +13,6 @@ Bibliotheque::Bibliotheque() {
     nom = "";
     adresse = "";
     code = "";
-    nombreTotalBibliotheques++;
 }
 
 // ============================================================================
@@ -27,14 +22,12 @@ Bibliotheque::Bibliotheque(string nom, string adresse, string code) {
     this->nom = nom;
     this->adresse = adresse;
     this->code = code;
-    nombreTotalBibliotheques++;
 }
 
 // ============================================================================
 // DESTRUCTEUR
 // ============================================================================
 Bibliotheque::~Bibliotheque() {
-    nombreTotalBibliotheques--;
     // Note: on ne supprime pas les livres ici pour éviter les problèmes
 }
 
@@ -168,11 +161,6 @@ void Bibliotheque::supprimerLivre(const string& codeLivre) {
     
     if (livre == nullptr) {
         throw LivreNonTrouveException(codeLivre);
-    }
-    
-    // On ne peut pas supprimer un livre emprunté
-    if (livre->getEtat() == EMPRUNTE) {
-        throw LivreNonDisponibleException(codeLivre);
     }
     
     string titre = livre->getTitre();
@@ -334,30 +322,16 @@ void Bibliotheque::afficher() const {
 string Bibliotheque::getNom() const { return nom; }
 string Bibliotheque::getAdresse() const { return adresse; }
 string Bibliotheque::getCode() const { return code; }
-int Bibliotheque::getNombreLivres() const { return livres.getTaille(); }
-int Bibliotheque::getNombreAdherents() const { return adherents.getTaille(); }
+// int Bibliotheque::getNombreLivres() const { return livres.getTaille(); }
+// int Bibliotheque::getNombreAdherents() const { return adherents.getTaille(); }
 ListeChainee<Livre*>& Bibliotheque::getLivres() { return livres; }
 ListeChainee<Adherent*>& Bibliotheque::getAdherents() { return adherents; }
 
-// ============================================================================
-// SETTERS
-// ============================================================================
-void Bibliotheque::setNom(string nouveauNom) { nom = nouveauNom; }
-void Bibliotheque::setAdresse(string nouvelleAdresse) { adresse = nouvelleAdresse; }
-
-// ============================================================================
-// METHODE STATIQUE
-// ============================================================================
-int Bibliotheque::getNombreTotalBibliotheques() {
-    return nombreTotalBibliotheques;
-}
-
-// ============================================================================
-// OPERATEUR ==
-// ============================================================================
-bool Bibliotheque::operator==(const Bibliotheque& autre) const {
-    return (this->code == autre.code);
-}
+// // ============================================================================
+// // SETTERS
+// // ============================================================================
+// void Bibliotheque::setNom(string nouveauNom) { nom = nouveauNom; }
+// void Bibliotheque::setAdresse(string nouvelleAdresse) { adresse = nouvelleAdresse; }
 
 // ============================================================================
 // FONCTION AMIE : operator<<

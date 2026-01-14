@@ -43,7 +43,7 @@ public:
     // GETTER / SETTER spécifique
     // ========================================================================
     int getSiecle() const;
-    void setSiecle(int nouveauSiecle);
+    // void setSiecle(int nouveauSiecle);
     
     // Méthode utilitaire pour afficher le siècle en chiffres romains
     string siecleToString() const;

@@ -15,6 +15,34 @@
 // ============================================================================
 // Syntaxe : class Fille : public Mere
 // "public" = les membres publics de Livre restent publics dans Roman
+enum GenreRoman {
+    LITTERATURE
+    ,ROMAN_NOIR
+    ,ROMAN_POLICIER
+    ,ROMAN_ANIMALIER
+    ,ROMAN_AMOUR
+    ,ROMAN_MOEURS
+    ,ROMAN_GOTHIQUE
+    ,ROMAN_COURTOIS
+    ,ROMAN_EPISTOLAIRE
+    ,ROMAN_FEUILLETON
+    ,ROMAN_GRAPHIQUE
+    ,ROMAN_HISTORIQUE
+    ,ROMAN_PHOTO
+    ,ROMAN_PICARESQUE
+    ,ROMAN_MEMOIRES
+    ,ROMAN_POPULAIRE
+    ,ROMAN_AVENTURES
+    ,ROMAN_ANTICIPATION
+    ,ROMAN_ESPIONNAGE
+    ,ROMAN_APPRENTISSAGE
+    ,ROMAN_CHEVALERIE
+    ,ROMAN_AUTOBIOGRAPHIQUE
+    ,NOUVEAU_ROMAN
+    ,CONTE
+    ,NOUVELLE
+    ,AUTRE_GENRE
+};  
 
 class Roman : public Livre {
 
@@ -22,7 +50,7 @@ class Roman : public Livre {
 // PRIVATE : accessible uniquement dans cette classe
 // ----------------------------------------------------------------------------
 private:
-    string genre;  // Ex: "Policier", "Aventure", "Science-Fiction"...
+    GenreRoman genreRoman;  // Ex: "Policier", "Aventure", "Science-Fiction"...
 
 // ----------------------------------------------------------------------------
 // PUBLIC
@@ -35,7 +63,7 @@ public:
     
     // Constructeur avec tous les paramètres (ceux de Livre + genre)
     Roman(string code, string auteur, string titre, string editeur,
-          string isbn, Public publicCible, string genre);
+          string isbn, Public publicCible, GenreRoman genreRoman);
 
     // ========================================================================
     // DESTRUCTEUR
@@ -54,11 +82,14 @@ public:
     // ========================================================================
     string getType() const override;
 
-    // ========================================================================
-    // GETTER / SETTER spécifique au Roman
-    // ========================================================================
-    string getGenre() const;
-    void setGenre(string nouveauGenre);
+    // // ========================================================================
+    // // GETTER / SETTER spécifique au Roman
+    // // ========================================================================
+    GenreRoman getGenreRoman() const;
+    // void setGenreRoman(GenreRoman nouveauGenreRoman);
+
+    // Méthode utilitaire pour convertir l'enum en string
+    string genreRomanToString() const;
 };
 
 #endif // ROMAN_H

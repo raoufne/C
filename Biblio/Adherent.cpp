@@ -54,15 +54,28 @@ Adherent::~Adherent() {
 // ============================================================================
 // CONCEPT : LANCER UNE EXCEPTION avec "throw"
 
-void Adherent::emprunterLivre(Livre* livre) {
+void Adherent::emprunterLivre(const string& codeLivre) {
+    // Vérifier que l'adhérent a une bibliothèque
+    if (bibliotheque == nullptr) {
+        throw BibliothequeException("ERREUR: Adherent sans bibliotheque");
+    }
+    
     // Vérifier la limite d'emprunts
     if (livresEmpruntes.getTaille() >= nombreMaxEmprunts) {
         throw LimiteEmpruntException(nombreMaxEmprunts);
     }
     
+    // Chercher le livre par son code dans la bibliothèque
+    Livre* livre = bibliotheque->rechercherLivreParCode(codeLivre);
+    
+    // Vérifier que le livre existe
+    if (livre == nullptr) {
+        throw LivreNonTrouveException(codeLivre);
+    }
+    
     // Vérifier que le livre est disponible
     if (!livre->estDisponible()) {
-        throw LivreNonDisponibleException(livre->getCode());
+        throw LivreNonDisponibleException(codeLivre);
     }
     
     // Effectuer l'emprunt
@@ -142,19 +155,19 @@ string Adherent::getNom() const { return nom; }
 string Adherent::getPrenom() const { return prenom; }
 string Adherent::getAdresse() const { return adresse; }
 string Adherent::getNumeroAdherent() const { return numeroAdherent; }
-Bibliotheque* Adherent::getBibliotheque() const { return bibliotheque; }
+// Bibliotheque* Adherent::getBibliotheque() const { return bibliotheque; }
 int Adherent::getNombreEmprunts() const { return livresEmpruntes.getTaille(); }
 int Adherent::getNombreMaxEmprunts() const { return nombreMaxEmprunts; }
-ListeChainee<Livre*>& Adherent::getLivresEmpruntes() { return livresEmpruntes; }
+// ListeChainee<Livre*>& Adherent::getLivresEmpruntes() { return livresEmpruntes; }
 
 // ============================================================================
 // SETTERS
 // ============================================================================
-void Adherent::setNom(string nouveauNom) { nom = nouveauNom; }
-void Adherent::setPrenom(string nouveauPrenom) { prenom = nouveauPrenom; }
-void Adherent::setAdresse(string nouvelleAdresse) { adresse = nouvelleAdresse; }
+// void Adherent::setNom(string nouveauNom) { nom = nouveauNom; }
+// void Adherent::setPrenom(string nouveauPrenom) { prenom = nouveauPrenom; }
+// void Adherent::setAdresse(string nouvelleAdresse) { adresse = nouvelleAdresse; }
 void Adherent::setBibliotheque(Bibliotheque* nouvelleBiblio) { bibliotheque = nouvelleBiblio; }
-void Adherent::setNombreMaxEmprunts(int nouveauMax) { nombreMaxEmprunts = nouveauMax; }
+// void Adherent::setNombreMaxEmprunts(int nouveauMax) { nombreMaxEmprunts = nouveauMax; }
 
 // ============================================================================
 // METHODE STATIQUE
@@ -175,6 +188,6 @@ bool Adherent::operator==(const Adherent& autre) const {
 // ============================================================================
 ostream& operator<<(ostream& os, const Adherent& adherent) {
     os << adherent.prenom << " " << adherent.nom 
-       << " (N°" << adherent.numeroAdherent << ")";
+       << " (Num: " << adherent.numeroAdherent << ")";
     return os;
 }

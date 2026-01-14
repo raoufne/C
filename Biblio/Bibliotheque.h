@@ -36,11 +36,6 @@ private:
     ListeChainee<Livre*> livres;        // Liste des livres
     ListeChainee<Adherent*> adherents;  // Liste des adhérents
 
-    // ========================================================================
-    // MEMBRE STATIQUE
-    // ========================================================================
-    static int nombreTotalBibliotheques;
-
 public:
     // ========================================================================
     // CONSTRUCTEURS
@@ -88,7 +83,7 @@ public:
     
     // Prête un livre à une autre bibliothèque
     Livre* preterLivre(const string& isbn);
-    
+
     // Rend les livres prêtés qui ne sont plus empruntés
     void rendreLivresPretes(Bibliotheque* proprietaire);
 
@@ -103,26 +98,16 @@ public:
     string getNom() const;
     string getAdresse() const;
     string getCode() const;
-    int getNombreLivres() const;
-    int getNombreAdherents() const;
+    // int getNombreLivres() const;
+    // int getNombreAdherents() const;
     ListeChainee<Livre*>& getLivres();
     ListeChainee<Adherent*>& getAdherents();
 
-    // ========================================================================
-    // SETTERS
-    // ========================================================================
-    void setNom(string nouveauNom);
-    void setAdresse(string nouvelleAdresse);
-
-    // ========================================================================
-    // METHODE STATIQUE
-    // ========================================================================
-    static int getNombreTotalBibliotheques();
-
-    // ========================================================================
-    // OPERATEUR ==
-    // ========================================================================
-    bool operator==(const Bibliotheque& autre) const;
+    // // ========================================================================
+    // // SETTERS
+    // // ========================================================================
+    // void setNom(string nouveauNom);
+    // void setAdresse(string nouvelleAdresse);
 
     // ========================================================================
     // FONCTION AMIE

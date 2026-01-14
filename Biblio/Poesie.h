@@ -48,11 +48,11 @@ public:
     void afficher() const override;
     string getType() const override;
 
-    // ========================================================================
-    // GETTER / SETTER spécifique
-    // ========================================================================
+    // // ========================================================================
+    // // GETTER / SETTER spécifique
+    // // ========================================================================
     TypePoesie getTypePoesie() const;
-    void setTypePoesie(TypePoesie nouveauType);
+    // void setTypePoesie(TypePoesie nouveauType);
     
     // Méthode utilitaire pour convertir l'enum en string
     string typePoesieToString() const;
