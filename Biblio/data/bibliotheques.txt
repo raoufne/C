@@ -1,0 +1,2 @@
+Bibliotheque Centrale;12 rue des Livres, Paris;BIB001
+Mediatheque du Lac;5 avenue du Lac, Lyon;BIB002

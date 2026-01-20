@@ -1,0 +1,2 @@
+ADH1;Dupont;Marie;10 rue de la Paix, Paris;3
+ADH2;Martin;Pierre;25 avenue Foch, Paris;2

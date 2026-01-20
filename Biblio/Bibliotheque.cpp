@@ -249,57 +249,62 @@ bool Bibliotheque::demanderLivre(Bibliotheque* autreBiblio, const string& isbn) 
     
     try {
         Livre* livrePrete = autreBiblio->preterLivre(isbn);
-        
         if (livrePrete != nullptr) {
+            // Retirer le livre de la biblio qui prête
+            autreBiblio->getLivres().supprimer(livrePrete);
+            
+            // Ajouter le livre à cette biblio
             livres.ajouter(livrePrete);
             cout << ">> Pret accepte: \"" << livrePrete->getTitre() << "\"" << endl;
             return true;
         }
-    } catch (LivreNonTrouveException& e) {
-        cout << e.what() << endl;
-    } catch (LivreNonDisponibleException& e) {
+    } catch (BibliothequeException& e) {
         cout << e.what() << endl;
     }
-    
     return false;
 }
 
-// ============================================================================
-// preterLivre() - Prête un livre à une autre bibliothèque
-// ============================================================================
 Livre* Bibliotheque::preterLivre(const string& isbn) {
     Livre* livre = rechercherLivreParISBN(isbn);
-    
-    if (livre == nullptr) {
-        throw LivreNonTrouveException(isbn);
-    }
-    
-    if (!livre->estDisponible()) {
-        throw LivreNonDisponibleException(livre->getCode());
-    }
+    if (livre == nullptr) throw LivreNonTrouveException(isbn);
+    if (!livre->estDisponible()) throw LivreNonDisponibleException(livre->getCode());
     
     livre->setEtat(PRETE);
     cout << ">> " << nom << " prete: \"" << livre->getTitre() << "\"" << endl;
-    
     return livre;
 }
 
-// ============================================================================
-// rendreLivresPretes() - Rend les livres prêtés non empruntés
-// ============================================================================
 void Bibliotheque::rendreLivresPretes(Bibliotheque* proprietaire) {
-    Noeud<Livre*>* courant = livres.getTete();
+    // On doit parcourir et collecter les livres à rendre d'abord
+    // car on ne peut pas modifier la liste pendant qu'on la parcourt
+    ListeChainee<Livre*> livresARendre;
     
+    Noeud<Livre*>* courant = livres.getTete();
+    while (courant != nullptr) {
+        if (courant->donnee->getEtat() == PRETE) {
+            livresARendre.ajouter(courant->donnee);
+        }
+        courant = courant->suivant;
+    }
+    
+    // Maintenant on transfère chaque livre
+    courant = livresARendre.getTete();
     while (courant != nullptr) {
         Livre* livre = courant->donnee;
-        courant = courant->suivant;  // Avancer AVANT de supprimer
         
-        // Si le livre est en état PRETE et n'est pas emprunté
-        if (livre->getEtat() == PRETE) {
-            livre->setEtat(LIBRE);
-            cout << ">> Retour du livre \"" << livre->getTitre() 
-                 << "\" a " << proprietaire->getNom() << endl;
-        }
+        // Retirer de cette biblio
+        livres.supprimer(livre);
+        
+        // Remettre état libre
+        livre->setEtat(LIBRE);
+        
+        // Ajouter au propriétaire
+        proprietaire->getLivres().ajouter(livre);
+        
+        cout << ">> Retour du livre \"" << livre->getTitre() 
+             << "\" a " << proprietaire->getNom() << endl;
+        
+        courant = courant->suivant;
     }
 }
 
