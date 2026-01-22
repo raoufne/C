@@ -1,9 +1,3 @@
-// ============================================================================
-// mainv3.cpp - VERSION 3 : Interface console + Stockage fichiers
-// ============================================================================
-// Comme V2 mais avec sauvegarde/chargement automatique dans data/
-// ============================================================================
-
 #include <iostream>
 #include <fstream>
 #include <limits>
@@ -22,16 +16,11 @@
 
 using namespace std;
 
-// Variables globales V3
 Bibliotheque* biblioActuelleV3 = nullptr;
 ListeChainee<Bibliotheque*> toutesBibliothequesV3;
 
-// Chemin du dossier data
 const string DATA_DIR = "data/";
 
-// ============================================================================
-// FONCTIONS UTILITAIRES
-// ============================================================================
 void viderBuffer3() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -60,16 +49,10 @@ void pause3() {
     cin.get();
 }
 
-// ============================================================================
-// FONCTIONS DE SAUVEGARDE
-// ============================================================================
-
-// Créer le dossier data s'il n'existe pas
 void creerDossierData() {
     mkdir(DATA_DIR.c_str());
 }
 
-// Sauvegarder toutes les bibliothèques
 void sauvegarderBibliotheques() {
     creerDossierData();
     ofstream fichier(DATA_DIR + "bibliotheques.txt");
@@ -82,14 +65,12 @@ void sauvegarderBibliotheques() {
     Noeud<Bibliotheque*>* courant = toutesBibliothequesV3.getTete();
     while (courant != nullptr) {
         Bibliotheque* b = courant->donnee;
-        // Format: nom;adresse;code
         fichier << b->getNom() << ";" << b->getAdresse() << ";" << b->getCode() << endl;
         courant = courant->suivant;
     }
     fichier.close();
 }
 
-// Sauvegarder tous les livres d'une bibliothèque
 void sauvegarderLivres(Bibliotheque* biblio) {
     creerDossierData();
     ofstream fichier(DATA_DIR + "livres_" + biblio->getCode() + ".txt");
@@ -99,7 +80,6 @@ void sauvegarderLivres(Bibliotheque* biblio) {
     Noeud<Livre*>* courant = biblio->getLivres().getTete();
     while (courant != nullptr) {
         Livre* l = courant->donnee;
-        // Format: type;code;auteur;titre;editeur;isbn;public;etat;attribut
         fichier << l->getType() << ";"
                 << l->getCode() << ";"
                 << l->getAuteur() << ";"
@@ -109,7 +89,6 @@ void sauvegarderLivres(Bibliotheque* biblio) {
                 << l->getPublicCible() << ";"
                 << l->getEtat() << ";";
         
-        // Attribut spécifique selon le type
         if (l->getType() == "Roman") {
             fichier << ((Roman*)l)->getGenreRoman();
         } else if (l->getType() == "BandeDessinee") {
@@ -127,7 +106,6 @@ void sauvegarderLivres(Bibliotheque* biblio) {
     fichier.close();
 }
 
-// Sauvegarder tous les adhérents d'une bibliothèque
 void sauvegarderAdherents(Bibliotheque* biblio) {
     creerDossierData();
     ofstream fichier(DATA_DIR + "adherents_" + biblio->getCode() + ".txt");
@@ -137,7 +115,6 @@ void sauvegarderAdherents(Bibliotheque* biblio) {
     Noeud<Adherent*>* courant = biblio->getAdherents().getTete();
     while (courant != nullptr) {
         Adherent* a = courant->donnee;
-        // Format: numero;nom;prenom;adresse;maxEmprunts
         fichier << a->getNumeroAdherent() << ";"
                 << a->getNom() << ";"
                 << a->getPrenom() << ";"
@@ -148,7 +125,6 @@ void sauvegarderAdherents(Bibliotheque* biblio) {
     fichier.close();
 }
 
-// Sauvegarder TOUT
 void sauvegarderTout() {
     sauvegarderBibliotheques();
     
@@ -162,11 +138,6 @@ void sauvegarderTout() {
     cout << ">> Donnees sauvegardees dans " << DATA_DIR << endl;
 }
 
-// ============================================================================
-// FONCTIONS DE CHARGEMENT
-// ============================================================================
-
-// Parser une ligne CSV (séparateur ;)
 void parserLigne(const string& ligne, string parties[], int maxParties) {
     int index = 0;
     string temp = "";
@@ -184,7 +155,6 @@ void parserLigne(const string& ligne, string parties[], int maxParties) {
     }
 }
 
-// Charger les livres d'une bibliothèque
 void chargerLivres(Bibliotheque* biblio) {
     ifstream fichier(DATA_DIR + "livres_" + biblio->getCode() + ".txt");
     if (!fichier.is_open()) return;
@@ -228,7 +198,6 @@ void chargerLivres(Bibliotheque* biblio) {
     fichier.close();
 }
 
-// Charger les adhérents d'une bibliothèque
 void chargerAdherents(Bibliotheque* biblio) {
     ifstream fichier(DATA_DIR + "adherents_" + biblio->getCode() + ".txt");
     if (!fichier.is_open()) return;
@@ -240,14 +209,12 @@ void chargerAdherents(Bibliotheque* biblio) {
         string p[5];
         parserLigne(ligne, p, 5);
         
-        // On ne peut pas restaurer le numéro exact, on recrée
         Adherent* adh = new Adherent(p[1], p[2], p[3], biblio, stoi(p[4]));
         biblio->getAdherents().ajouter(adh);
     }
     fichier.close();
 }
 
-// Charger toutes les bibliothèques
 void chargerTout() {
     ifstream fichier(DATA_DIR + "bibliotheques.txt");
     if (!fichier.is_open()) {
@@ -275,9 +242,6 @@ void chargerTout() {
     }
 }
 
-// ============================================================================
-// MENU BIBLIOTHEQUES V3
-// ============================================================================
 void menuBibliothequesV3() {
     int choix;
     do {
@@ -299,7 +263,7 @@ void menuBibliothequesV3() {
                 Bibliotheque* nouvelle = new Bibliotheque(nom, adresse, code);
                 toutesBibliothequesV3.ajouter(nouvelle);
                 biblioActuelleV3 = nouvelle;
-                sauvegarderTout();  // SAUVEGARDE AUTO
+                sauvegarderTout();  
                 cout << ">> Bibliotheque creee et sauvegardee!" << endl;
                 break;
             }
@@ -336,9 +300,6 @@ void menuBibliothequesV3() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU LIVRES V3
-// ============================================================================
 void menuLivresV3() {
     if (!biblioActuelleV3) {
         cout << "Selectionnez d'abord une bibliotheque!" << endl;
@@ -419,7 +380,7 @@ void menuLivresV3() {
                 }
                 if (livre) {
                     biblioActuelleV3->acheterLivre(livre);
-                    sauvegarderLivres(biblioActuelleV3);  // SAUVEGARDE AUTO
+                    sauvegarderLivres(biblioActuelleV3);  
                 }
                 break;
             }
@@ -427,7 +388,7 @@ void menuLivresV3() {
                 string code = saisirChaine3("Code du livre a supprimer: ");
                 try {
                     biblioActuelleV3->supprimerLivre(code);
-                    sauvegarderLivres(biblioActuelleV3);  // SAUVEGARDE AUTO
+                    sauvegarderLivres(biblioActuelleV3); 
                 } catch (BibliothequeException& e) {
                     cout << "[ERREUR] " << e.what() << endl;
                 }
@@ -445,9 +406,6 @@ void menuLivresV3() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU ADHERENTS V3
-// ============================================================================
 void menuAdherentsV3() {
     if (!biblioActuelleV3) {
         cout << "Selectionnez d'abord une bibliotheque!" << endl;
@@ -480,7 +438,7 @@ void menuAdherentsV3() {
                 
                 Adherent* adh = new Adherent(nom, prenom, adresse, biblioActuelleV3, maxEmp);
                 biblioActuelleV3->inscrireAdherent(adh);
-                sauvegarderAdherents(biblioActuelleV3);  // SAUVEGARDE AUTO
+                sauvegarderAdherents(biblioActuelleV3); 
                 cout << ">> Numero adherent: " << adh->getNumeroAdherent() << endl;
                 break;
             }
@@ -502,7 +460,7 @@ void menuAdherentsV3() {
                 string num = saisirChaine3("Numero adherent a desinscrire (ex: ADH1): ");
                 try {
                     biblioActuelleV3->desinscrireAdherent(num);
-                    sauvegarderAdherents(biblioActuelleV3);  // SAUVEGARDE AUTO
+                    sauvegarderAdherents(biblioActuelleV3); 
                     cout << ">> Adherent desinscrit!" << endl;
                 } catch (BibliothequeException& e) {
                     cout << "[ERREUR] " << e.what() << endl;
@@ -514,9 +472,6 @@ void menuAdherentsV3() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU EMPRUNTS V3
-// ============================================================================
 void menuEmpruntsV3() {
     if (!biblioActuelleV3) {
         cout << "Selectionnez d'abord une bibliotheque!" << endl;
@@ -546,7 +501,7 @@ void menuEmpruntsV3() {
                 string codeLivre = saisirChaine3("Code du livre: ");
                 try {
                     adh->emprunterLivre(codeLivre);
-                    sauvegarderLivres(biblioActuelleV3);  // SAUVEGARDE AUTO
+                    sauvegarderLivres(biblioActuelleV3);  
                 } catch (BibliothequeException& e) {
                     cout << "[ERREUR] " << e.what() << endl;
                 }
@@ -565,7 +520,7 @@ void menuEmpruntsV3() {
                 Livre* livre = biblioActuelleV3->rechercherLivreParCode(codeLivre);
                 try {
                     adh->rendreLivre(livre);
-                    sauvegarderLivres(biblioActuelleV3);  // SAUVEGARDE AUTO
+                    sauvegarderLivres(biblioActuelleV3);  
                 } catch (BibliothequeException& e) {
                     cout << "[ERREUR] " << e.what() << endl;
                 }
@@ -576,9 +531,6 @@ void menuEmpruntsV3() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU ECHANGES V3
-// ============================================================================
 void menuEchangesV3() {
     if (toutesBibliothequesV3.getTaille() < 2) {
         cout << "Il faut au moins 2 bibliotheques!" << endl;
@@ -616,7 +568,7 @@ void menuEchangesV3() {
                 
                 string isbn = saisirChaine3("ISBN du livre demande: ");
                 demandeur->demanderLivre(preteur, isbn);
-                sauvegarderTout();  // SAUVEGARDE AUTO
+                sauvegarderTout();  
                 break;
             }
             case 2: {
@@ -638,7 +590,7 @@ void menuEchangesV3() {
                 Bibliotheque* proprietaire = toutesBibliothequesV3[numProprietaire-1];
                 
                 emprunteur->rendreLivresPretes(proprietaire);
-                sauvegarderTout();  // SAUVEGARDE AUTO
+                sauvegarderTout();  
                 break;
             }
         }
@@ -646,11 +598,7 @@ void menuEchangesV3() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// FONCTION PRINCIPALE V3
-// ============================================================================
 void executerV3() {
-    // CHARGEMENT AUTOMATIQUE AU DEMARRAGE
     cout << "\n>> Chargement des donnees..." << endl;
     chargerTout();
     
@@ -687,7 +635,6 @@ void executerV3() {
         }
     } while (choix != 0);
     
-    // SAUVEGARDE AUTOMATIQUE A LA SORTIE
     cout << "\n>> Sauvegarde automatique..." << endl;
     sauvegarderTout();
 }

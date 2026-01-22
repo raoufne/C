@@ -1,7 +1,3 @@
-// ============================================================================
-// mainv2.cpp - VERSION 2 : Interface console (interaction utilisateur)
-// ============================================================================
-
 #include <iostream>
 #include <limits>
 #include "Livre.h"
@@ -17,13 +13,9 @@
 
 using namespace std;
 
-// Variables globales
 Bibliotheque* biblioActuelle = nullptr;
 ListeChainee<Bibliotheque*> toutesBibliotheques;
 
-// ============================================================================
-// FONCTIONS UTILITAIRES
-// ============================================================================
 void viderBuffer() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -52,9 +44,6 @@ void pause() {
     cin.get();
 }
 
-// ============================================================================
-// MENU BIBLIOTHEQUES
-// ============================================================================
 void menuBibliotheques() {
     int choix;
     do {
@@ -112,9 +101,6 @@ void menuBibliotheques() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU LIVRES
-// ============================================================================
 void menuLivres() {
     if (!biblioActuelle) {
         cout << "Selectionnez d'abord une bibliotheque!" << endl;
@@ -225,9 +211,6 @@ void menuLivres() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU ADHERENTS
-// ============================================================================
 void menuAdherents() {
     if (!biblioActuelle) {
         cout << "Selectionnez d'abord une bibliotheque!" << endl;
@@ -292,9 +275,6 @@ void menuAdherents() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU EMPRUNTS
-// ============================================================================
 void menuEmprunts() {
     if (!biblioActuelle) {
         cout << "Selectionnez d'abord une bibliotheque!" << endl;
@@ -353,9 +333,6 @@ void menuEmprunts() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// MENU ECHANGES
-// ============================================================================
 void menuEchanges() {
     if (toutesBibliotheques.getTaille() < 2) {
         cout << "Il faut au moins 2 bibliotheques!" << endl;
@@ -421,9 +398,6 @@ void menuEchanges() {
     } while (choix != 0);
 }
 
-// ============================================================================
-// FONCTION PRINCIPALE V2
-// ============================================================================
 void executerV2() {
     int choix;
     do {

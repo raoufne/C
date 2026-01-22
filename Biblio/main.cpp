@@ -1,21 +1,11 @@
-// ============================================================================
-// main.cpp - MENU PRINCIPAL
-// ============================================================================
-// Permet de choisir entre les 3 versions du programme
-// ============================================================================
-
 #include <iostream>
 #include <limits>
 using namespace std;
 
-// Déclarations des fonctions des autres fichiers
-void executerV1();  // mainv1.cpp
-void executerV2();  // mainv2.cpp
-void executerV3();  // mainv3.cpp
+void executerV1();  
+void executerV2();  
+void executerV3();  
 
-// ============================================================================
-// FONCTIONS UTILITAIRES
-// ============================================================================
 void viderBufferMain() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -32,9 +22,6 @@ int saisirChoix() {
     return valeur;
 }
 
-// ============================================================================
-// PROGRAMME PRINCIPAL
-// ============================================================================
 int main() {
     int choix;
     

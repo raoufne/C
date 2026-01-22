@@ -1,19 +1,9 @@
-// ============================================================================
-// Album.cpp - Implémentation de la classe Album
-// ============================================================================
-
 #include "Album.h"
 
-// ============================================================================
-// CONSTRUCTEUR PAR DEFAUT
-// ============================================================================
 Album::Album() : Livre() {
     typeIllustration = DESSINS;
 }
 
-// ============================================================================
-// CONSTRUCTEUR AVEC PARAMETRES
-// ============================================================================
 Album::Album(string code, string auteur, string titre, string editeur,
              string isbn, Public publicCible, TypeIllustration typeIllustration)
     : Livre(code, auteur, titre, editeur, isbn, publicCible) {
@@ -21,16 +11,9 @@ Album::Album(string code, string auteur, string titre, string editeur,
     this->typeIllustration = typeIllustration;
 }
 
-// ============================================================================
-// DESTRUCTEUR
-// ============================================================================
 Album::~Album() {
-    // Destructeur de Livre appelé automatiquement
 }
 
-// ============================================================================
-// typeIllustrationToString() - Convertit l'enum en texte
-// ============================================================================
 string Album::typeIllustrationToString() const {
     switch(typeIllustration) {
         case PHOTOS:            return "Photos";
@@ -40,9 +23,6 @@ string Album::typeIllustrationToString() const {
     }
 }
 
-// ============================================================================
-// afficher() - Affichage spécifique pour un album
-// ============================================================================
 void Album::afficher() const {
     cout << "======== ALBUM ========" << endl;
     cout << "Code:         " << code << endl;
@@ -56,23 +36,10 @@ void Album::afficher() const {
     cout << "=======================" << endl;
 }
 
-// ============================================================================
-// getType()
-// ============================================================================
 string Album::getType() const {
     return "Album";
 }
 
-// // ============================================================================
-// // GETTER
-// // ============================================================================
 TypeIllustration Album::getTypeIllustration() const {
     return typeIllustration;
 }
-
-// // ============================================================================
-// // SETTER
-// // ============================================================================
-// void Album::setTypeIllustration(TypeIllustration nouveauType) {
-//     typeIllustration = nouveauType;
-// }

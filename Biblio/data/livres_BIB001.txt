@@ -1,5 +1,5 @@
 Roman;ROM001;Victor Hugo;Les Miserables;Gallimard;978-111;0;0;11
-Roman;ROM002;Agatha Christie;Mort sur le Nil;Le Masque;978-222;0;0;2
-BandeDessinee;BD001;Goscinny;Asterix le Gaulois;Dargaud;978-333;3;0;Uderzo
-Theatre;THE001;Moliere;Le Malade Imaginaire;Barbin;978-444;3;0;17
+Roman;ROM002;Agatha Christie;Mort sur le Nil;Le Masque;978-222;0;1;2
+BandeDessinee;BD001;Goscinny;Asterix le Gaulois;Dargaud;978-333;3;1;Uderzo
 Roman;ROM003;Emile Zola;Germinal;Charpentier;978-555;0;2;5
+Theatre;THE001;Moliere;Le Malade Imaginaire;Barbin;978-444;3;0;17

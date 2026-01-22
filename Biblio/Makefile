@@ -1,17 +1,8 @@
-# ============================================================================
-# Makefile - Projet Bibliotheque
-# ============================================================================
-# make      -> compile le programme
-# make run  -> compile et execute
-# make clean -> nettoie
-# ============================================================================
-
 CXX = g++
 CXXFLAGS = -Wall -std=c++11
 
 TARGET = Program
 
-# Fichiers sources
 SOURCES = main.cpp \
           mainv1.cpp \
           mainv2.cpp \
@@ -27,7 +18,6 @@ SOURCES = main.cpp \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
-# Compilation
 all: $(TARGET)
 	@echo ""
 	@echo "======================================"
